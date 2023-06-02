@@ -3,6 +3,7 @@ package docrob.cag.ContactsScreens;
 import docrob.cag.framework.menu.Menu;
 import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
 
 public class MainMenu extends Screen {
     @Override
@@ -41,6 +42,9 @@ public class MainMenu extends Screen {
 
     private MenuItemMethod addContact = () -> {
         System.out.println("You may enter your new contact information");
+        AddContact screen = new AddContact();
+        ScreenManager.addScreen(screen);
+        super.setReadyToExit();
     };
 
     private MenuItemMethod searchContact = () -> {
