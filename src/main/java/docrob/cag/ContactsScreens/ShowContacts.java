@@ -5,9 +5,11 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.utils.Input;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.List;
 
 import static docrob.cag.ContactsScreens.ContactList.findAll;
 
@@ -36,10 +38,32 @@ public class ShowContacts extends Screen {
     public static ArrayList<Contact> clist = findAll();
 
     public static void main(String[] args) {
+
+        Path contacts = Paths.get("contacts.txt");
+
+        if(Files.notExists(contacts)) {
+            try {
+                Files.createFile(contacts);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<String> name = Arrays.asList("Jon", "Jack", "Reese");
+        try {
+            Files.write(contacts, name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
         Input in = new Input();
         int choice = -1;
         while(choice !=0){
-            System.out.println("0 - Return to the main menu");
+            System.out.println("0 - Close your phone");
             System.out.println("1 - View all Contacts");
             System.out.println("2 - Add new Contact");
             System.out.println("3 - Delete Contact");

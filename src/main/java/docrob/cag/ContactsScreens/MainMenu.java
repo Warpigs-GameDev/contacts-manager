@@ -12,7 +12,7 @@ public class MainMenu extends Screen {
         menu.addItem("Exit Application", exitProgram);
 //        menu.addItem("Hi", sayHello);
         menu.addItem("Show list of contacts", showContacts);
-        menu.addItem("Add a new contact", addContact);
+//        menu.addItem("Add a new contact", addContact);
         menu.addItem("Search by contact name", searchContact);
         menu.addItem("Delete an existing contact", deleteContact);
 //        menu.addItem("Do something else", doSomethingElse, true);
@@ -40,12 +40,12 @@ public class MainMenu extends Screen {
         System.out.println("Here is a list of all your contacts");
     };
 
-    private MenuItemMethod addContact = () -> {
-        System.out.println("You may enter your new contact information");
-        AddContact screen = new AddContact();
-        ScreenManager.addScreen(screen);
-        super.setReadyToExit();
-    };
+//    private MenuItemMethod addContact = () -> {
+//        System.out.println("You may enter your new contact information");
+//        AddContact screen = new AddContact();
+//        ScreenManager.addScreen(screen);
+//        super.setReadyToExit();
+//    };
 
     private MenuItemMethod searchContact = () -> {
         System.out.println("Please enter the name of the person you wish to look up");
