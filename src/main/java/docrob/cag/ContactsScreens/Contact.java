@@ -26,4 +26,17 @@ public class Contact {
         return number;
     }
 
+    public static Contact createFromCSVString(String string){
+        String [] parts = string.split(",");
+        Contact contact = new Contact(parts[0], parts[1]);
+        return contact;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }
