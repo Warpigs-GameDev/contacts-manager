@@ -15,7 +15,7 @@ public class MainMenu extends Screen {
         menu.addItem("Add a new contact", addContact);
         menu.addItem("Search by contact name", searchContact);
         menu.addItem("Delete an existing contact", deleteContact);
-        menu.addItem("Do something else", doSomethingElse, true);
+//        menu.addItem("Do something else", doSomethingElse, true);
     }
     @Override
     public void show (){
