@@ -15,6 +15,8 @@ import static docrob.cag.ContactsScreens.ContactList.findAll;
 
 public class ShowContacts extends Screen {
 
+    private static ArrayList<Contact> contacts;
+
     @Override
     public void setup() {
         super.setup();
@@ -36,13 +38,20 @@ public class ShowContacts extends Screen {
     };
 
 
-    public static ArrayList<Contact> clist = findAll();
+    public static List<Contact> clist;
 
+
+
+
+
+       
 
 
 
     public static void main(String[] args) {
 
+        clist = loadContacts();
+        System.out.println(clist);
 
 
         Input in = new Input();
@@ -54,6 +63,38 @@ public class ShowContacts extends Screen {
 
             doChoice(choice);
         }
+    }
+
+    private static List<Contact> loadContacts() {
+        List<Contact> contacts = new ArrayList<>();
+        try {
+            Path dataFile = Paths.get("contacts.txt");
+
+            contacts = getContactsFromFile(dataFile);
+
+        } catch (IOException e) {
+            System.out.println("Hey man your data file does not exist!");
+            System.exit(0);
+        }
+
+        return contacts;
+
+    }
+
+    private static List<Contact> getContactsFromFile(Path dataFile) throws IOException {
+        List<String> contactStrings = Files.readAllLines(dataFile);
+        List<Contact> contacts = new ArrayList<>();
+
+        // iterate over the strings
+        for (String contactString : contactStrings) {
+            // make a new fighter object from each string
+            Contact contact = Contact.createFromCSVString(contactString);
+
+            // add the fighter objects to the fighters list
+            contacts.add(contact);
+        }
+
+        return contacts;
     }
 
     private static void doChoice(int choice){
