@@ -5,6 +5,8 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.utils.Input;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static docrob.cag.ContactsScreens.ContactList.findAll;
@@ -31,7 +33,7 @@ public class ShowContacts extends Screen {
         super.setReadyToExit();
     };
 
-    public static Contact[] clist = findAll();
+    public static ArrayList<Contact> clist = findAll();
 
     public static void main(String[] args) {
         Input in = new Input();
@@ -62,18 +64,25 @@ public class ShowContacts extends Screen {
                 System.out.println("Enter contact number");
                 String number = in.getString();
                 Contact nContact = new Contact(name, number);
-                clist = addContact(clist, nContact);
+                addContact(nContact);
 
                 for(Contact pContact : clist){
                     System.out.println(pContact.getName() + " | " + pContact.getNumber());
                 }
+                break;
             case 3:
+                Input bye = new Input();
+                System.out.println("Enter contact place you wish to delete");
+                String byeName = bye.getString();
+                for (int i = 0; i < clist.size(); i++) {
+                    if (clist.get(i).getName().equalsIgnoreCase(byeName)) {
+                        clist.remove(i);
+                    }
+                }
         }
     }
 
-    public static Contact[] addContact(Contact[] contactList, Contact contact){
-        Contact[] nContact = Arrays.copyOf(contactList, contactList.length + 1);
-        nContact[nContact.length - 1] = contact;
-        return nContact;
+    public static void addContact(Contact contact){
+         clist.add(contact);
     }
 }
