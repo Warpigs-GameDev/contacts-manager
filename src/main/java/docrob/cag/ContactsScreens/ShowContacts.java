@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
+import docrob.cag.framework.utils.ConsoleColors;
 
 import static docrob.cag.ContactsScreens.ContactList.findAll;
 
@@ -41,17 +42,20 @@ public class ShowContacts extends Screen {
     public static List<Contact> clist;
 
 
-
-
-
-       
-
-
-
     public static void main(String[] args) {
 
         clist = loadContacts();
-        System.out.println(clist);
+//        System.out.println(clist);
+        System.out.println("Welcome to your contact list! Here's a few options you can do:");
+        System.out.println(ConsoleColors.ANSI_FG_RED+ "0 - Close your phone"+ ConsoleColors.ANSI_RESET);
+        System.out.println(ConsoleColors.ANSI_FG_YELLOW+ "1 - View all Contacts"+ ConsoleColors.ANSI_RESET);
+        System.out.println(ConsoleColors.ANSI_FG_GREEN+ "2 - Add new Contact"+ ConsoleColors.ANSI_RESET);
+        System.out.println(ConsoleColors.ANSI_FG_BLUE+ "3 - Delete Contact"+ ConsoleColors.ANSI_RESET);
+        System.out.println(ConsoleColors.ANSI_FG_PURPLE+ "4 - Search Contacts" + ConsoleColors.ANSI_RESET);
+//        System.out.println("0 - Close your phone");
+//        System.out.println("1 - View all Contacts");
+//        System.out.println("2 - Add new Contact");
+//        System.out.println("3 - Delete Contact");
 
 
         Input in = new Input();
@@ -85,12 +89,9 @@ public class ShowContacts extends Screen {
         List<String> contactStrings = Files.readAllLines(dataFile);
         List<Contact> contacts = new ArrayList<>();
 
-        // iterate over the strings
-        for (String contactString : contactStrings) {
-            // make a new fighter object from each string
-            Contact contact = Contact.createFromCSVString(contactString);
 
-            // add the fighter objects to the fighters list
+        for (String contactString : contactStrings) {
+            Contact contact = Contact.createFromCSVString(contactString);
             contacts.add(contact);
         }
 
@@ -128,6 +129,7 @@ public class ShowContacts extends Screen {
                         clist.remove(i);
                     }
                 }
+                break;
             case 4:
                 Input search = new Input();
                 System.out.println("Which contact are you looking for");
@@ -138,6 +140,7 @@ public class ShowContacts extends Screen {
 
                     }
                 }
+                break;
 
         }
     }
