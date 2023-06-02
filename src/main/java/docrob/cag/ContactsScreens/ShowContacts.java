@@ -5,15 +5,11 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.utils.Input;
-import docrob.cag.framework.utils.ConsoleColors;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.List;
 
 import static docrob.cag.ContactsScreens.ContactList.findAll;
 
@@ -52,11 +48,7 @@ public class ShowContacts extends Screen {
         Input in = new Input();
         int choice = -1;
         while(choice !=0){
-            System.out.println(ConsoleColors.ANSI_FG_RED+ "0 - Return to the main menu"+ ConsoleColors.ANSI_RESET);
-            System.out.println(ConsoleColors.ANSI_FG_YELLOW+ "1 - View all Contacts"+ ConsoleColors.ANSI_RESET);
-            System.out.println(ConsoleColors.ANSI_FG_GREEN+ "2 - Add new Contact"+ ConsoleColors.ANSI_RESET);
-            System.out.println(ConsoleColors.ANSI_FG_BLUE+ "3 - Delete Contact"+ ConsoleColors.ANSI_RESET);
-            System.out.println(ConsoleColors.ANSI_FG_PURPLE+ "4 - Search Contacts" + ConsoleColors.ANSI_RESET);
+
 
             choice = in.getInt(0, 6);
 
