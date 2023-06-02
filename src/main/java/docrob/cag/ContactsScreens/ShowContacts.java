@@ -37,20 +37,27 @@ public class ShowContacts extends Screen {
         super.setReadyToExit();
     };
 
-    public static List<Contact> clist = findAll();
+
+    public static List<Contact> clist;
+
+
+
+
+
+       
+
+
 
     public static void main(String[] args) {
 
         clist = loadContacts();
         System.out.println(clist);
 
+
         Input in = new Input();
         int choice = -1;
         while(choice !=0){
-            System.out.println("0 - Close your phone");
-            System.out.println("1 - View all Contacts");
-            System.out.println("2 - Add new Contact");
-            System.out.println("3 - Delete Contact");
+
 
             choice = in.getInt(0, 6);
 
@@ -93,6 +100,7 @@ public class ShowContacts extends Screen {
     private static void doChoice(int choice){
         switch (choice){
             case 1:
+                System.out.print("Name | Phone Number\n ---------------\n");
                 for(Contact pContact : clist){
                     System.out.println(pContact.getName() + " | " + pContact.getNumber());
                 }
@@ -107,6 +115,7 @@ public class ShowContacts extends Screen {
                 addContact(nContact);
 
                 for(Contact pContact : clist){
+
                     System.out.println(pContact.getName() + " | " + pContact.getNumber());
                 }
                 break;
@@ -119,6 +128,17 @@ public class ShowContacts extends Screen {
                         clist.remove(i);
                     }
                 }
+            case 4:
+                Input search = new Input();
+                System.out.println("Which contact are you looking for");
+                String searchName = search.getString();
+                for (int i = 0; i < clist.size(); i++) {
+                    if(clist.get(i).getName().equalsIgnoreCase(searchName)){
+                        System.out.println(clist.get(i));
+
+                    }
+                }
+
         }
     }
 
